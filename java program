@@ -1,0 +1,255 @@
+import java.util.Scanner;								 //Imports scanner class
+
+public class Assignment1{ 								 //Class name
+	
+	public static void main(String[] args){ 			 //Main method
+		
+		System.out.print("Is there another customer?");  //Ask user if there is a customer in line
+		System.out.println("1 for yes, 2 for no");       //Tells user what to input to activate program
+		Scanner input = new Scanner(System.in);			 //Creates scanner input
+		String start = input.next();						 //Scanner variable
+		int customer = 0;
+		double books = 0;
+		double bookmarks = 0;
+		double paintings = 0;
+		double fullPrice = 0;
+		double change = 0;
+		double fullPay = 0;
+		double fullprice = 0;
+		
+				
+		
+		
+		while(start.equalsIgnoreCase("1"))
+		{
+			System.out.println("1 - Books - $5.00");							//Tells user price of books
+			System.out.println("2 - Bookmars $1 each, or $5.00 for six.");	    //Tells user price of bookmarks
+			System.out.println("3 - Paintings of books $100");					//Tells user price of paintings
+			System.out.println("4 See currnet order");							//Gives user option to see current order
+			System.out.println("5 Checkout");									//Allows user to move to checkout
+			System.out.println ("Please choose an option from 1 to 5.");
+			String choice = input.next();
+			customer++;
+			
+			if (choice.equalsIgnoreCase("1")){
+				Scanner num1 = new Scanner(System.in);
+				System.out.println("How many would you like?");
+				books = num1.nextDouble(); 
+				System.out.println(books + ":" + " " + "added to cart");
+				
+				
+				
+			} else if (choice.equalsIgnoreCase("2")){
+				Scanner num2 = new Scanner(System.in);
+				System.out.println("How many would you like?");
+				bookmarks = num2.nextDouble();
+				System.out.println(bookmarks + ":" + " " + "added to cart");
+				
+			} else if (choice.equalsIgnoreCase("3")){
+				Scanner num3= new Scanner(System.in);
+				System.out.println("How many would you like?");
+				paintings = num3.nextDouble();
+				System.out.println(paintings + ":" + " " + "added to cart");
+			
+			} else if (choice.equalsIgnoreCase("4")){
+				System.out.println("Currently in cart:");
+				System.out.println("Books:" + " " + books);
+				System.out.println("Bookmarks:" + " " + bookmarks);
+				System.out.println("Paintings:" + " " + paintings);
+			
+			} else if (choice.equalsIgnoreCase("5") && customer % 3 != 0){
+				System.out.println("You did not get a discount."); 
+				System.out.println("Your cart is: ");
+				
+					if (books !=0 && bookmarks !=0 && paintings !=0){
+						double bookTotal = 0;  //create variable for book total cost before tax
+						bookTotal = books * 5; //finds pretax total for books
+						System.out.printf(books + " " +"Books: $%.2f.%n", bookTotal); //Tells user total before tax
+						double bookTax = 0; // create variable for book tax
+						bookTax = bookTotal *.07; // finds tax for books
+					double bookmarkSix = 0; //variable for 6 bookmarks
+						double bookmarksOne = 0; //variable for 1 bookmark
+						double bookmarksTotal = 0; //variable for total bookmarks
+						double bookmarksOnePrice = 0; //variable for 1 bookmark pretax price
+						double bookmarkSixPrice = 0; //variable for 6 bookmarks pretax price
+						bookmarksOne = bookmarks % 6; // find how many bookmarks
+						bookmarkSix = bookmarks - bookmarksOne; //find how many bookmarks
+						bookmarkSixPrice = bookmarksOne * 5; // price of 6 bookmarks
+						bookmarksOnePrice = bookmarkSix * 1; // price of 1 bookmark
+						bookmarksTotal = bookmarkSixPrice + bookmarksOnePrice; // bookmark total price
+						System.out.printf(bookmarks + " " + "Bookmarks: $%.2f.%n", bookmarksTotal); // tells user total price
+						double bookmarkTax = 0; // bookmark tax variable
+						bookmarkTax = bookmarksTotal * .07; //bookmark tax
+						double paintingsTotal = 0; // paintings total variable
+						paintingsTotal = paintings * 100; //find total paintings cost
+						System.out.printf(paintings + " " + "Paintings: $%.2f.%n", paintingsTotal);  // tell user paintings cost
+						double paintingsTax = 0; // paintings tax variable
+						paintingsTax = paintingsTotal * .07; // paintings tax
+						double fullTax = 0;
+						fullTax = paintingsTax + bookTax + bookmarkTax;
+						double fullTotal = 0;
+						fullTotal =  bookTotal + bookmarksTotal + paintingsTotal;
+						System.out.printf("The pre tax total is: $%.2f.%n",fullTotal );
+						System.out.printf("Tax is: $%.2f.%n,",fullTax );
+						fullPrice = fullTotal + fullTax;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+						Scanner num4 = new Scanner(System.in);
+						System.out.println("Please enter your total");
+						fullPay = num4.nextDouble(); 
+						if(fullPay < fullprice){
+							System.out.println("Not enough money - please re-enter"); 
+						} else{
+							change = fullPay - fullPrice;
+							System.out.printf("Thank you your change is: $%.2f.%n", change);
+						}
+						
+						
+						
+				} else if (bookmarks !=0 && books !=0){
+						double bookmarkSix = 0; //variable for 6 bookmarks
+						double bookmarksOne = 0; //variable for 1 bookmark
+						double bookmarksTotal = 0; //variable for total bookmarks
+						double bookmarksOnePrice = 0; //variable for 1 bookmark pretax price
+						double bookmarkSixPrice = 0; //variable for 6 bookmarks pretax price
+						bookmarksOne = bookmarks % 6; // find how many bookmarks
+						bookmarkSix = bookmarks - bookmarksOne; //find how many bookmarks
+						bookmarkSixPrice = bookmarksOne * 5; // price of 6 bookmarks
+						bookmarksOnePrice = bookmarkSix * 1; // price of 1 bookmark
+						bookmarksTotal = bookmarkSixPrice + bookmarksOnePrice; // bookmark total price
+						System.out.printf(bookmarks + " " + "Bookmarks: $%.2f.%n", bookmarksTotal); // tells user total price
+						double bookmarkTax = 0; // bookmark tax variable
+						bookmarkTax = bookmarksTotal * .07; //bookmark tax
+						double bookTotal = 0;  //create variable for book total cost before tax
+						bookTotal = books * 5; //finds pretax total for books
+						System.out.printf(books + " " +"Books: $%.2f.%n", bookTotal); //Tells user total before tax
+						double bookTax = 0; // create variable for book tax
+						bookTax = bookTotal *.07; // finds tax for books
+						double bookAndMarkTotal = 0;
+						bookAndMarkTotal = bookmarksTotal + bookTotal;
+						double bookAndMarkTax = 0;
+						bookAndMarkTax = bookTax + bookAndMarkTax;
+						System.out.printf("Pretax total is $%.2f.%n", bookAndMarkTotal);
+						System.out.printf("Tax: $%.2f.%n", bookAndMarkTax);
+						double bookAndMarkFinal = 0;
+						bookAndMarkFinal = bookAndMarkTotal + bookAndMarkTax;
+						System.out.printf("Final total is: $%.2f.%n", bookAndMarkFinal);
+						fullPrice = bookAndMarkFinal + bookAndMarkTax;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+			
+				} else if (paintings !=0 & books !=0){
+						double paintingsTotal = 0; // paintings total variable
+						paintingsTotal = paintings * 100; //find total paintings cost
+						System.out.printf(paintings + " " + "Paintings: $%.2f.%n", paintingsTotal);  // tell user paintings cost
+						double paintingsTax = 0; // paintings tax variable
+						paintingsTax = paintingsTotal * .07; // paintings tax
+						double bookTotal = 0;  //create variable for book total cost before tax
+						bookTotal = books * 5; //finds pretax total for books
+						System.out.printf(books + " " +"Books: $%.2f.%n", bookTotal); //Tells user total before tax
+						double bookTax = 0; // create variable for book tax
+						bookTax = bookTotal *.07; // finds tax for books
+						double paintingsBooktotal=0;
+						paintingsBooktotal = paintingsTotal + bookTotal;
+						double paintingsBooktax = 0;
+						paintingsBooktax = paintingsTax + bookTax;
+						System.out.printf("Pretax total is: $%.2f.%n",paintingsBooktotal);
+						System.out.printf("Tax: $%.2f.%n", paintingsBooktax);
+						double paintingsBookFinal = 0;
+						paintingsBookFinal = paintingsBooktax + paintingsBooktotal;
+						System.out.printf("Final total is: $%.2f.%n", paintingsBookFinal);
+						fullPrice = paintingsBookFinal + paintingsBooktax;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+						
+				 } else if (paintings !=0 && bookmarks !=0){
+						double bookmarkSix = 0; //variable for 6 bookmarks
+						double bookmarksOne = 0; //variable for 1 bookmark
+						double bookmarksTotal = 0; //variable for total bookmarks
+						double bookmarksOnePrice = 0; //variable for 1 bookmark pretax price
+						double bookmarkSixPrice = 0; //variable for 6 bookmarks pretax price
+						bookmarksOne = bookmarks % 6; // find how many bookmarks
+						bookmarkSix = bookmarks - bookmarksOne; //find how many bookmarks
+						bookmarkSixPrice = bookmarksOne * 5; // price of 6 bookmarks
+						bookmarksOnePrice = bookmarkSix * 1; // price of 1 bookmark
+						bookmarksTotal = bookmarkSixPrice + bookmarksOnePrice; // bookmark total price
+						System.out.printf(bookmarks + " " + "Bookmarks: $%.2f.%n", bookmarksTotal); // tells user total price
+						double bookmarkTax = 0; // bookmark tax variable
+						bookmarkTax = bookmarksTotal * .07; //bookmark tax
+						double paintingsTotal = 0; // paintings total variable
+						paintingsTotal = paintings * 100; //find total paintings cost
+						System.out.printf(paintings + " " + "Paintings: $%.2f.%n", paintingsTotal);  // tell user paintings cost
+						double paintingsTax = 0; // paintings tax variable
+						paintingsTax = paintingsTotal * .07; // paintings tax
+						double paintingsMarkTotal = 0;
+						paintingsMarkTotal = paintingsTotal + bookmarksTotal;
+						System.out.printf("Pretax total is: $%.2f.%n", paintingsMarkTotal);
+						double paintingsMarkTax = 0;
+						paintingsMarkTax = paintingsTax + bookmarkTax;
+						System.out.printf("Tax is: $%.2f.%n", paintingsMarkTax);
+						fullPrice = paintingsMarkTax + paintingsMarkTotal;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+						
+				 } else if (books !=0){
+					 double bookTotal = 0;  //create variable for book total cost before tax
+						bookTotal = books * 5; //finds pretax total for books
+						System.out.printf(books + " " +"Books: $%.2f.%n", bookTotal); //Tells user total before tax
+						double bookTax = 0; // create variable for book tax
+						bookTax = bookTotal *.07; // finds tax for books
+						System.out.printf("Pretax total: $%.2f.%n", bookTotal);
+						System.out.printf("Tax is: $%.2f.%n", bookTax);
+						fullPrice = bookTax + bookTotal;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+						
+				 } else if (bookmarks !=0){
+					   double bookmarkSix = 0; //variable for 6 bookmarks
+						double bookmarksOne = 0; //variable for 1 bookmark
+						double bookmarksTotal = 0; //variable for total bookmarks
+						double bookmarksOnePrice = 0; //variable for 1 bookmark pretax price
+						double bookmarkSixPrice = 0; //variable for 6 bookmarks pretax price
+						bookmarksOne = bookmarks % 6; // find how many bookmarks
+						bookmarkSix = bookmarks - bookmarksOne; //find how many bookmarks
+						bookmarkSixPrice = bookmarksOne * 5; // price of 6 bookmarks
+						bookmarksOnePrice = bookmarkSix * 1; // price of 1 bookmark
+						bookmarksTotal = bookmarkSixPrice + bookmarksOnePrice; // bookmark total price
+						System.out.printf(bookmarks + " " + "Bookmarks: $%.2f.%n", bookmarksTotal); // tells user total price
+						double bookmarkTax = 0; // bookmark tax variable
+						bookmarkTax = bookmarksTotal * .07; //bookmark tax
+						System.out.printf("Pretax total is: $%.2f.%n",bookmarksTotal);
+						System.out.printf("Tax is: $%.2f.%n",bookmarkTax);
+						fullPrice = bookmarkTax + bookmarksTotal;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+						
+				 } else if (paintings !=0){
+					 double paintingsTotal = 0; // paintings total variable
+						paintingsTotal = paintings * 100; //find total paintings cost
+						System.out.printf(paintings + " " + "Paintings: $%.2f.%n", paintingsTotal);  // tell user paintings cost
+						double paintingsTax = 0; // paintings tax variable
+						paintingsTax = paintingsTotal * .07; // paintings tax 
+						System.out.printf("Pretax total is: $%.2f.%n", paintingsTotal);
+						System.out.printf("Tax is: $%.2f.%n", paintingsTax);
+						fullPrice = paintingsTax + paintingsTotal;
+						System.out.printf("Final total is: $%.2f.%n", fullPrice);
+						
+				 }
+				 
+				
+				
+				
+			
+				
+		}
+				
+		
+			 else if (choice.equalsIgnoreCase("5") && customer % 3 ==0){
+				
+			}
+			 else {
+				 
+			 }
+				 
+			 }
+		
+		
+		System.exit(0);
+		}
+		
+}
+		
